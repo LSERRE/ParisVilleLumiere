@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Paris ville lumière</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        
+        <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,600italic,300,600' rel='stylesheet' type='text/css'>
+        <!-- charge jQuery dans le head pour le loader -->
+	    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    	<!-- Preloader -->
+        <script type="text/javascript">
+            //<![CDATA[
+                $(window).load(function() { 
+                    $('#status').fadeOut(); 
+                    $('#preloader').delay(350).fadeOut('slow');
+                    $('body').delay(350).css({'overflow':'visible'});
+                })
+            //]]>
+        </script>
+    </head>
+    <body>
+
+		
+        <!-- SECTION LOADER -->
+        <div id="preloader">
+            <div id="status">&nbsp;</div>
+        </div>
+
+		<!-- SECTION HOME PAGE -->
+        <section id="home">
+	        <div class="welcome">
+	            <h1>Paris, ville lumière</h1>
+	            <p>Découvrez une expérience inédite dans Paris plongé dans l’obscurité : la Ville Lumière a été privée de ses illuminations, à vous d’explorer ses secrets pour l’éclairer à nouveau !</p>
+	            <p>Vivez l’expérience à votre façon : partez à la découverte de l’histoire des lumières parisiennes, armé de votre lampe-torche que vous pouvez contrôler avec votre smartphone ou votre souris.</p> 
+	            <a  href="#" class="button mobile" data="mobile">commencer</a> 
+	            <a  href="#" class="button mouse" data="mouse">commencer</a>
+	            <p id="gameLink"> </p>
+	            <p class="leap">Propriétaire d’un Leap Motion ? Branchez le. <a href="">ici</a>.</p>
+	        </div>	
+        </section>
+
+		<!-- SECTION SYNCHRONISATION -->
+        <section id="sync">
+        	<div class="syncWrap">
+				<h2>Synchronisation</h2>
+				<p>Pour commencer, synchronisez les deux appareils. <br /> Connectez-vous à l'url suivante depuis votre smartphone:</p>
+				<a href="#">http://goo.gl/L9W7SJ</a>
+				<p>Entrez à présent le code ci-dessous: <span id="mobileCode"></span> </p>
+        	</div>
+        </section>
+
+        <!-- SECTION SCENE -->
+        <section id="scene-wrap">
+        	<!--  On chagera ici les data de chaque scene  -->
+        </section>
+
+
+
+	    <script type="text/javascript" src="javascripts/library_leap.js" ></script>
+	    <script type="text/javascript" src="javascripts/leap_game.js" ></script>
+	    <script src="/socket.io/socket.io.js"></script>
+	    <script type="text/javascript" src="javascripts/jquery-cookie/jquery.cookie.js" ></script>
+	    <script language="javascript" src="javascripts/gameClass.js" type="text/javascript"></script>
+	    <script language="javascript" src="javascripts/gameLoad.js" type="text/javascript"></script>
+	    <script type="text/javascript" src="javascripts/main.js" ></script>
+		<!-- Pour bouger la Lampe de torche -->
+		<script type="text/javascript" src="javascripts/ga.js"></script>
+		
+	    <script type="text/javascript">
+	    	function randomString() {
+			    var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+			    var string_length = 4;
+			    var randomstring = '';
+			    for (var i=0; i<string_length; i++) {
+			      var rnum = Math.floor(Math.random() * chars.length);
+			      randomstring += chars.substring(rnum,rnum+1);
+			    }
+			    return randomstring;
+			}
+
+			var roomId = randomString();
+			
+			var socket = io.connect();
+			
+			var userNum;
+			 
+	    	socket.emit('new room', { room: roomId});
+
+			socket.on('add user', function(socketID, data, userNumber){
+				players.push(new player(socketID));
+				$('#status').fadeIn(); 
+		        $('#preloader').fadeIn('slow');
+				var sceneNbr = 1;
+				userNum = userNumber;
+				
+				setTimeout(function() {
+			        var nextScene = 'scene1.html';
+					$.ajax({
+			            url: nextScene,
+			            success: function(data){
+			                $('#scene-wrap').html(data);
+			                $.ajax({
+								dataType: 'script',
+							    url: 'javascripts/scene.js',
+							    crossDomain:true,
+			            		success: function(){
+									var centre = $('#center');
+									centre.removeClass('small');
+									setTimeout(function(){
+										detectCollision();
+									}, 1000)
+
+			            			setInterval(function() {
+									  update();
+									  draw();
+									}, 1000/FPS);
+									//document.getElementById('spot').show();
+			            		}
+							});
+							
+			            }	
+			        });
+			        
+				}, 1000);  
+
+		     	setTimeout(function() {
+			        $('#status').fadeOut(); 
+			        $('#preloader').fadeOut('slow');
+			        $('#home').hide();
+			        $('#sync').hide();
+			        $('#scene-wrap').show();
+				}, 4000);   	
+			});
+			
+			socket.on('mobile_sync', function (data) {
+				console.log(data);
+			}); 
+			
+			socket.on('affichercoucou', function (data) {
+				alert("coucou");
+			}); 
+			
+			socket.on('remove user', function(socketID){
+			  var destroyThis = null;
+			  for(var i in players){
+			    if(players[i].id == socketID){
+			      destroyThis = i;
+			    }
+			  }
+			  if(destroyThis !== null){ players.splice(destroyThis, 1);}
+			});
+
+
+			socket.on('update position', function(socketId, data){
+			var player = null;
+			
+			for(var i in players){
+			  if(players[i].id == socketId){
+			    player = players[i];
+			  }
+			}
+			
+
+			if(player !== null){
+			  var tiltLR = data.tilt_LR;
+			  var tiltFB = data.tilt_FB;
+			
+			  if((tiltLR < 2) && (tiltLR > -2)){  tiltLR = 0;  }
+			  if((tiltFB < 2) && (tiltFB > -2)){  tiltFB = 0;  }
+			 
+			
+			  if(player.smoothingLR.length >= 5){ Pop(player.smoothingLR);    }
+			  if(player.smoothingFB.length >= 5){ Pop(player.smoothingFB);    }
+			  Push(player.smoothingLR, tiltLR);
+			  Push(player.smoothingFB, tiltFB);
+			  player.smoothedLR = 0;
+			  player.smoothedFB = 0;
+			
+			  for(var i = 0; i < player.smoothingLR.length; i++){
+			    player.smoothedLR += player.smoothingLR[i];
+			  }
+			  for(var i = 0; i < player.smoothingFB.length; i++){ 
+			    player.smoothedFB += player.smoothingFB[i];
+			  }
+			
+			  player.smoothedLR /= player.smoothingLR.length;
+			  player.smoothedFB /= player.smoothingFB.length;
+			
+			  var speed = player.smoothedLR;
+			
+			  //if tilting right, increase left, else, decrease
+			  if((player.smoothedLR > 3) || (player.smoothedLR < -3)){
+			    player.x += speed/2;
+			  }
+			
+			  speed = player.smoothedFB;
+			  //if tilting right, increase left, else, decrease
+			  if((player.smoothedFB > 3) || (player.smoothedFB <-3)){
+			    player.y -= speed;
+			  }
+			}
+			});
+			
+			socket.on('TurnLightOn', function(socketId, data){
+				SetLightOn();
+			});
+
+
+
+			function update() {
+				for(var i in players){      
+				  players[i].update();
+				}
+			}
+
+
+			function draw() {
+				for(var i in players){
+				players[i].draw(i);
+				}
+			}
+
+		</script>
+ 	</body>
+</html>

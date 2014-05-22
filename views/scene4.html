@@ -1,0 +1,64 @@
+	<section class="scene4" id="scene">
+		
+    	<!-- background image -->
+		<img src="images/cathedrale.jpg" alt="#" class="bg-main" id="off"/> 
+		<img src="images/cathedralel.jpg" alt="#" class="bg-main" id="on"/> 
+
+		<!--Effet lampe torche-->
+		<div id="centre" class="center"></div>
+		<div id="spot" class="spotlight"></div>
+		
+
+		<!-- Texte d'intro -->
+		<div id="intro" class="gradientBg">
+			<div class="wrap">
+				<h2>Scène 4 - Notre-Dame</h2>
+				<p>La lumière, c’est aussi la couleur, et quel autre endroit que Notre-Dame de Paris illustre mieux ce lien ? Véritable chef-d’œuvre de l’architecture gothique, le célèbre monument abrite les créations lumineuses des plus grands maîtres verriers d’hier et d’aujourd’hui.</p>	
+			</div>
+		</div>
+		<span class="info gradientBg"></span><!-- bouton info -->
+
+		<!-- PopIn Indice -->
+		<div class="pop-in gradientBg" id="indice1">
+			<div class="wrap">
+				<h3>Premier Objet</h3>
+				<p class="strong">Lost in Restauration</p>
+				<p>La rosace sud de Notre-Dame de Paris, installée en 1260, a subi tant de dégâts puis de restaurations au cours des siècles que beaucoup des panneaux qui la composent ont été perdus, remplacés, ou échangés. Aujourd’hui, on ne sait plus très bien à quoi ressemblait l’original !</p>
+				<a href="#" class="continue">continuer</a>
+			</div>
+		</div>
+		<div class="pop-in gradientBg" id="indice2">
+			<div class="wrap">
+				<h3>Deuxième objet</h3>
+				<p class="strong">De l’ancien et du nouveau</p>
+				<p>Pour ses 850 ans, Notre-Dame est passée à la lumière moderne : le nouvel éclairage intérieur, achevé en mars 2012, fait appel aux LEDs et est modulable en fonction de l’heure du jour et des saisons.</p>
+				<a href="#" class="continue">continuer</a>
+			</div>
+		</div>
+		
+		<!-- PopIn Enigme -->
+		<div id="enigme" class="Enigme gradientBg" ><!--Pop in Enigme-->
+			<div class="wrap">
+				<h3>Question n°4</h3>
+				<p id="erreur"><p><!-- Message d'erreur -->
+				<p>Quel changement a marqué les 850 ans de la cathédrale Notre-Dame de Paris ?<p>
+				<form>
+					<label for="1"></label><input type="radio" name="reponse" id="1" value="1"> Une rénovation des vitraux </input>
+					<label for="2"></label><input type="radio" name="reponse" id ="2" value="2"> Un nouvel éclairage intérieur </input>
+					<label for="3"></label><input type="button" id="allume" class="continue" onclick="ActiveLight()" value="Valider"></input>
+				</form>
+			</div>
+		</div>
+
+		<!-- Objets ?trouver -->
+		<div id="indice" class="PopIn">
+			<div id="zone1" style="top:43%; left:37%;" class="indice"></div>
+			<div id="zone2" style="top:45%; left:62%;" class="indice"></div>
+		</div>
+
+		<!--Lien pour la nouvelle scene-->
+		<a href="scene5.html" id="lien" title="Suivant >" class="lien gradientBg">Suivant ></a>
+
+
+	</section>
+	

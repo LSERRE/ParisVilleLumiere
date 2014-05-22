@@ -1,0 +1,79 @@
+	<section class="scene3" id="scene">
+		
+    	<!-- background image -->
+		<img src="images/metro.jpg" alt="#" class="bg-main" id="off"/> 
+		<img src="images/metrol.jpg" alt="#" class="bg-main" id="on"/> 
+
+		<!--Effet lampe torche-->
+		<div id="centre" class="center"></div>
+		<div id="spot" class="spotlight"></div>
+		
+
+		<!-- Texte d'intro -->
+		<div id="intro" class="gradientBg">
+			<div class="wrap">
+				<h2>Scène 3 - Le métro</h2>
+				<p>Véritable emblème de Paris, le métropolitain est aussi un laboratoire de l’éclairage. Equipé dès sa création de lampes électriques, il a connu depuis toutes les évolutions techniques : ampoules à incandescence, tubes fluorescents… A vous de découvrir ses secrets !</p>	
+			</div>
+		</div>
+		<span class="info gradientBg"></span><!-- bouton info -->
+
+		<!-- PopIn Indice -->
+		<div class="pop-in gradientBg" id="indice1">
+			<div class="wrap">
+				<h3>Premier Objet</h3>
+				<p class="strong">Une histoire de reflets</p>
+				<p>Les célèbres carreaux qui ornent les murs des stations de métro parisiennes ont été placés là pour des raisons d’éclairage. En effet, les premières lampes électriques qui éclairent les stations étant peu puissantes, les carreaux blancs et biseautés permettaient de réfléchir la lumière pour y voir un peu plus clair.</p>
+				<a href="#" class="continue">continuer</a>
+			</div>
+		</div>
+		<div class="pop-in gradientBg" id="indice2">
+			<div class="wrap">
+				<h3>Deuxième objet</h3>
+				<p class="strong">Feu rouge ou feu tricolore ?</p>
+				<p>Le premier feu de signalisation parisien date de 1923, mais ce n’est pas un feu tricolore : ce n’est qu’un feu rouge. Il faut attendre 1933 pour voir le premier feu tricolore dans Paris.</p>
+				<a href="#" class="continue">continuer</a>
+			</div>
+		</div>
+		<div class="pop-in gradientBg" id="indice3">
+			<div class="wrap">
+				<h3>Troisième objet</h3>
+				<p class="strong">L’arrivée des LEDs</p>
+				<p>Comme l’éclairage public à la surface, le métro fait aujourd’hui sa révolution lumineuse : pour réduire la consommation, tout l’éclairage passera progressivement aux LEDs. La station Franklin D. Roosevelt est la première à en avoir profité.</p>
+				<a href="#" class="continue">continuer</a>
+			</div>
+		</div>
+
+		<!-- PopIn Enigme -->
+		<div id="enigme" class="Enigme gradientBg" ><!--Pop in Enigme-->
+			<div class="wrap">
+				<h3>Question n°3</h3>
+				<p id="erreur"><p><!-- Message d'erreur -->
+				<p>Quelle astuce fut utilisée pour mieux éclairer les premières stations de métro ?<p>
+				<form>
+					<label for="1">Un grand nombre de lampes</label><input type="radio" name="reponse" id="1" value="1">  </input>
+					<label for="2">Des carreaux réfléchissants </label><input type="radio" name="reponse" id ="2" value="2"> </input>
+					<label for="3">Des LEDs</label><input type="radio" name="reponse" id ="3" value="3">  </input>
+					<input type="button" id="allume" class="continue" onclick="ActiveLight()" value="Valider"></input>
+				</form>
+			</div>
+		</div>
+
+		<!-- Objets ?trouver -->
+		<div id="indice" class="PopIn">
+			<div id="zone1" style="top:38%; left:68%;" class="indice"></div>
+			<div id="zone2" style="top:8%; left:92%;" class="indice"></div>
+			<div id="zone3" style="top:29%; left:15%;" class="indice"></div>
+		</div>
+
+		<!--Lien pour la nouvelle scene-->
+		<a href="scene4.html" id="lien" title="Suivant >" class="lien gradientBg">Suivant ></a>
+
+			<script>
+		window.setInterval(function() {
+		  collision($('#zone3'), $('#centre'));
+		}, 2000);
+	</script>
+
+	</section>
+	

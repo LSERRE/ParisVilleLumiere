@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Paris ville lumière</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        
+        <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,600italic,300,600' rel='stylesheet' type='text/css'>
+        <!-- charge jQuery dans le head pour le loader -->
+	    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    	<!-- Preloader -->
+        <script type="text/javascript">
+            //<![CDATA[
+                $(window).load(function() { 
+                    $('#status').fadeOut(); 
+                    $('#preloader').delay(350).fadeOut('slow');
+                    $('body').delay(350).css({'overflow':'visible'});
+                })
+            //]]>
+        </script>
+    </head>
+    <body>
+    	<div id="fb-root"></div>
+        <script>
+            (function(d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) return;
+              js = d.createElement(s); js.id = id;
+              js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1&appId=138613896294184";
+              fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
+	
+		<div id="blurVideo">
+		</div>
+		
+        <video id="video" preload="true" >
+		
+		<source src="assets/TimeLapse.mp4" type='video/mp4' >
+		<source src="assets/TimeLapse.ogv" type='video/ogv' >
+		<p>Your user agent does not support the HTML5 Video element.</p>
+		</video>
+	
+		<section id="merci">
+			<h1>Merci</h1>
+			<h2>La ville de Paris vous souhaite de joyeuses et lumineuses fêtes de fin d'année</h2>
+			<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+			<a href="http://parislight.nodejitsu.com/" class="button merci">recommencer</a>
+		</section>
+        
+	    <script type="text/javascript" src="javascripts/video.js" ></script>
+    </body>
+</html>  

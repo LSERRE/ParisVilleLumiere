@@ -1,0 +1,79 @@
+	<section class="scene2" id="scene">
+		
+    	<!-- background image -->
+		<img src="images/rue.jpg" alt="#" class="bg-main" id="off"/> 
+		<img src="images/ruel.jpg" alt="#" class="bg-main" id="on"/> 
+
+		<!--Effet lampe torche-->
+		<div id="centre" class="center"></div>
+		<div id="spot" class="spotlight"></div>
+		
+
+		<!-- Texte d'intro -->
+		<div id="intro" class="gradientBg">
+			<div class="wrap">
+				<h2>Scène 2 - La Rue</h2>
+				<p>Si Paris est si célèbre pour la beauté de ses lumières, c’est à ses rues qu’elle le doit. Premières à accueillir les balbutiements de l’éclairage public, elles sont aujourd’hui encore au centre de l’attention avec des éclairages toujours plus économes et des décorations de Noël enchantées. Trouvez avec votre lampe-torche les indices qui vous permettront de ramener la lumière autour de vous.</p>	
+			</div>
+		</div>
+		<span class="info gradientBg"></span><!-- bouton info -->
+
+		<!-- PopIn Indice -->
+		<div class="pop-in gradientBg" id="indice1">
+			<div class="wrap">
+				<h3>Premier Objet</h3>
+				<p class="strong">Lampadaires ambulants</p>
+				<p>L’éclairage public, né au Moyen- ge comme moyen de lutte contre la criminalité, connaît des débuts parfois curieux : ainsi, en 1662, Louis XIV fait mettre en place un service payant de porteurs de flambeaux qui escortent les passants jusqu’à leur destination.</p>
+				<a href="#" class="continue">continuer</a>
+			</div>
+		</div>
+		<div class="pop-in gradientBg" id="indice2">
+			<div class="wrap">
+				<h3>Deuxième objet</h3>
+				<p class="strong">La Fée électricité</p>
+				<p>L’éclairage électrique arrive à Paris dès 1878, place de l’Opéra. Il s’agit de lampes à arc électrique, qui produisent une lumière mouvante et à la couleur changeante : elles sont peu populaires, et il faut donc attendre le XXème siècle et l’ampoule à incandescence pour que la lumière électrique se répande.</p>
+				<a href="#" class="continue">continuer</a>
+			</div>
+		</div>
+		<div class="pop-in gradientBg" id="indice3">
+			<div class="wrap">
+				<h3>Troisième objet</h3>
+				<p class="strong">Les goûts et les couleurs…</p>
+				<p>Les soucis de qualité de l’éclairage et d’économie d’énergie ne datent pas d’hier : dès 1788, on fait changer les lanternes à huile de tripe par de l’huile de colza, moins cher, moins nauséabond et produisant une lumière plus blanche.</p>
+				<a href="#" class="continue">continuer</a>
+			</div>
+		</div>
+
+		<!-- PopIn Enigme -->
+		<div id="enigme" class="Enigme gradientBg" ><!--Pop in Enigme-->
+			<div class="wrap">
+				<h3>Question n°2</h3>
+				<p id="erreur"><p><!-- Message d'erreur -->
+				<p>Pourquoi les premiers éclairages électriques parisiens n’eurent-ils pas un grand succès ?<p>
+				<form>
+					<label for="1">Ils sentaient mauvais </label><input type="radio" name="reponse" id="1" value="1"> </input>
+					<label for="2">Il fallait les recharger chaque heure</label><input type="radio" name="reponse" id ="2" value="2"> </input>
+					<label for="3">La lumière était instable </label><input type="radio" name="reponse" id ="3" value="3"> </input>
+					<input type="button" id="allume" class="continue" onclick="ActiveLight()" value="Valider"></input>
+				</form>
+			</div>
+		</div>
+
+		<!-- Objets ?trouver -->
+		<div id="indice" class="PopIn">
+			<div id="zone1" style="top:54%; left:46%;" class="indice"></div>
+			<div id="zone2" style="top:74%; left:2%;" class="indice"></div>
+			<div id="zone3" style="top:72%; left:65%;" class="indice"></div>
+		</div>
+
+		<!--Lien pour la nouvelle scene-->
+		<a href="#" id="lien" title="Suivant >" class="lien gradientBg">Suivant ></a>
+		
+			<script>
+			window.setInterval(function() {
+			  collision($('#zone3'), $('#centre'));
+			}, 2000);
+		</script>
+		
+	</section>
+	

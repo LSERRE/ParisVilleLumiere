@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="en"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Mobile Page</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        
+        <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,600italic,300,600' rel='stylesheet' type='text/css'>
+    </head>
+<body class="onMobile">
+  <div id="wrapper">
+    
+    <p id="error"></p>
+    
+    
+    <form id="mobile_validation" action="" onsubmit="return validation();">
+    	<h3>Code de validation:</h3>
+	    <input type="text" id="code_validation"/>
+	    <input type="submit" />
+	    <p id="sync-msg"> </p>
+    </form>
+    
+    <div id="explore"></div>
+</div>
+
+<div id="questions_mobile">
+	<div id="enigme1" class="Enigme gradientBg" ><!--Pop in Enigme-->
+		<div class="wrap">
+			<h3>Question n°1</h3>
+			<p id="erreur"><p><!-- Message d'erreur -->
+			<p>Pour quelle raison a-t-on créé le changement d’heure ?<p>
+			<form>
+				<input type="radio" name="reponse" id="1" value="1"> Réduire la consommation </input>
+				<input type="radio" name="reponse" id ="2" value="2"> Améliorer le réseau de distribution </input>
+				<input type="button" id="allume" class="continue" onclick="SendActiveLight(1)" value="Valider"></input>
+			</form>
+		</div>
+	</div>
+	
+	<div id="enigme2" class="Enigme gradientBg" ><!--Pop in Enigme-->
+		<div class="wrap">
+			<h3>Question n°2</h3>
+			<p id="erreur"><p><!-- Message d'erreur -->
+			<p>Pourquoi les premiers éclairages électriques parisiens n’eurent-ils pas un grand succès ?<p>
+			<form>
+				<input type="radio" name="reponse" id="1" value="1"> Ils sentaient mauvais </input>
+				<input type="radio" name="reponse" id ="2" value="2">Il fallait les recharger chaque heure </input>
+				<input type="radio" name="reponse" id ="3" value="3">  La lumière était instable </input>
+				<input type="button" id="allume" class="continue" onclick="SendActiveLight(2)" value="Valider"></input>
+			</form>
+		</div>
+	</div>
+	
+	
+	<div id="enigme3" class="Enigme gradientBg" ><!--Pop in Enigme-->
+		<div class="wrap">
+			<h3>Question n°3</h3>
+			<p id="erreur"><p><!-- Message d'erreur -->
+			<p>Quelle astuce fut utilisée pour mieux éclairer les premières stations de métro ?<p>
+			<form>
+				<input type="radio" name="reponse" id="1" value="1"> Un grand nombre de lampes </input>
+				<input type="radio" name="reponse" id="good" value="2"> Des carreaux réfléchissants </input>
+				<input type="radio" name="reponse" id="3" value="3"> Des LEDs </input>
+				<input type="button" id="allume" class="continue" onclick="SendActiveLight(3)" value="Valider"></input>
+			</form>
+		</div>
+	</div>
+	
+	
+	<div id="enigme4" class="Enigme gradientBg" ><!--Pop in Enigme-->
+		<div class="wrap">
+			<h3>Question n°4</h3>
+			<p id="erreur"><p><!-- Message d'erreur -->
+			<p>Quel changement a marqué les 850 ans de la cathédrale Notre-Dame de Paris ?<p>
+			<form>
+				<input type="radio" name="reponse" id="1" value="1"> Une rénovation des vitraux </input>
+				<input type="radio" name="reponse" id="good" value="2"> Un nouvel éclairage intérieur </input>
+				<input type="button" id="allume" class="continue" onclick="SendActiveLight(4)" value="Valider"></input>
+			</form>
+		</div>
+	</div>
+	
+	
+	<div id="enigme5" class="Enigme gradientBg" ><!--Pop in Enigme-->
+		<div class="wrap">
+			<h3>Question n°5</h3>
+			<p id="erreur"><p><!-- Message d'erreur -->
+			<p>Au début des années 30, quelle installation lumineuse occupe presque toute la surface de la tour Eiffel ?<p>
+			<form>
+				<input type="radio" name="reponse" id="1" value="1"> Une publicité Citroën </input>
+				<input type="radio" name="reponse" id ="2" value="2"> Une gigantesque horloge </input>
+				<input type="radio" name="reponse" id ="3" value="3"> Un phare </input>
+				<input type="button" id="allume" class="continue" onclick="SendActiveLight(5)" value="Valider"></input>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+
+
+<script type="text/javascript">
+	var socket = io.connect();
+        var registered = false;
+        //When a user connects with a mobile phone
+
+        function getUrlVars() {
+	  var vars = {};
+	  var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+		vars[key] = value;
+          });
+	  return vars;
+        }
+
+	init3();
+	var count = 0;
+
+	function init() {
+		if (window.DeviceOrientationEvent) {
+			console.log("DeviceOrientation is supported on this device");
+		} else if (window.OrientationEvent) {
+			console.log("DeviceOrientation is supported on this device via MozOrientation");
+		}
+	}
+		
+	function init2() {
+		if (window.DeviceOrientationEvent) {
+			// Listen for the deviceorientation event and handle DeviceOrientationEvent object
+			window.addEventListener('deviceorientation', devOrientHandler, false);
+		} else if (window.OrientationEvent) {
+			// Listen for the MozOrientation event and handle OrientationData object
+			window.addEventListener('MozOrientation', mozDevOrientHandler, false);
+		}
+	}
+		
+	function init3() {
+		if (window.DeviceOrientationEvent) {
+			// Listen for the deviceorientation event and handle the raw data
+			window.addEventListener('deviceorientation', function(eventData) {
+				// gamma is the left-to-right tilt in degrees, where right is positive
+				var tiltLR = eventData.gamma;
+				
+				// beta is the front-to-back tilt in degrees, where front is positive
+				var tiltFB = eventData.beta;
+					
+				// alpha is the compass direction the device is facing in degrees
+				var dir = eventData.alpha
+					
+				// deviceorientation does not provide this data
+				var motUD = null;
+					
+				// call our orientation event handler
+				deviceOrientationHandler(tiltLR, tiltFB, dir, motUD);
+				}, false);
+		} else if (window.OrientationEvent) {
+			window.addEventListener('MozOrientation', function(eventData) {
+				// x is the left-to-right tilt from -1 to +1, so we need to convert to degress
+				var tiltLR = eventData.x * 90;
+					
+				// y is the front-to-back tilt from -1 to +1, so we need to convert to degress
+				// We also need to invert the value so tilting the device towards us (forward) 
+				// results in a positive value. 
+				var tiltFB = eventData.y * -90;
+					
+				// MozOrientation does not provide this data
+				var dir = null;
+					
+				// z is the vertical acceleration of the device
+				var motUD = eventData.z;
+					
+				deviceOrientationHandler(tiltLR, tiltFB, dir, motUD);
+				}, false);
+		} else {
+			document.getElementById("error").innerHTML = "Not supported on your device or browser.  Sorry."
+		}
+	}
+	
+        //Send updated position data
+        function deviceOrientationHandler(tiltLR, tiltFB, dir, motionUD) {
+
+
+                if(registered){
+                  socket.emit('update movement', { tilt_LR: Math.round(tiltLR), tilt_FB: Math.round(tiltFB)});
+                }
+
+        }
+        
+		socket.on('mobile_sync', function (data) {
+			$('#sync-msg').empty();
+			$('#sync-msg').append(data.msg);
+			
+			if(data.msg == 'Synchronised'){
+				setTimeout(function(){
+					
+					$("#explore").addClass('sync');
+					$('body').addClass('onExplore');
+				}, 600);
+				$("#mobile_validation").fadeOut(500);
+			}
+		}); 
+		
+		socket.on('showQuestion', function (data) {
+			if(data.scene == 'scene1'){
+				$('#enigme1').addClass('active');
+			}
+			else if(data.scene == 'scene2'){
+				$('#questions_mobile #enigme2').addClass('active');
+			}
+			else if(data.scene == 'scene3'){
+				$('#questions_mobile #enigme3').addClass('active');
+			}
+			else if(data.scene == 'scene4'){
+				$('#questions_mobile #enigme4').addClass('active');
+			}
+			else if(data.scene == 'scene5'){
+				$('#questions_mobile #enigme5').addClass('active');
+			}
+			$('body').removeClass('onExplore');
+		}); 
+		       
+        function validation(){
+	        var code = $("#code_validation").val();
+	        socket.emit('connect mobile', { room: code}, function(data){
+	        	if(data.registered = true){
+		        	registered = true;
+		        }else{
+			    $('#error').append(data.error);
+			}
+	        });
+	        return false;
+        }
+        
+        
+		function SendActiveLight(nb){
+			var reponse;
+			console.log('coucou');
+			var thisScene = "scene"+nb;
+			var enigme = "#enigme"+nb;
+			console.log(thisScene);
+			// Condition pour les reponse
+			if(thisScene=="scene1" || thisScene=="scene5"){
+				reponse = document.getElementById('1').checked;
+			}
+			else if (thisScene=="scene2"){
+				reponse = document.getElementById('3').checked;
+				
+			}
+			else if(thisScene=="scene3" || thisScene=="scene4"){
+				reponse = document.getElementById('good').checked;
+				console.log(reponse);
+				
+			}
+			
+			if (reponse){
+				socket.emit('SetLightOn', { msg: 'lightOn'} );
+				$(enigme).removeClass('active');
+				$('body').addClass('onExplore');
+				console.log("good");
+				
+			} else {
+				document.getElementById('erreur').innerHTML='Mauvaise reponse';
+				console.log("bad");
+		 	}
+		}
+        
+</script>
+</body>
+</html>

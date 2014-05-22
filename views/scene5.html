@@ -1,0 +1,79 @@
+	<section class="scene5" id="scene">
+		
+    	<!-- background image -->
+		<img src="images/eiffeltower.jpg" alt="#" class="bg-main" id="off"/> 
+		<img src="images/eiffeltowerl.jpg" alt="#" class="bg-main" id="on"/> 
+
+		<!--Effet lampe torche-->
+		<div id="centre" class="center"></div>
+		<div id="spot" class="spotlight"></div>
+		
+
+		<!-- Texte d'intro -->
+		<div id="intro" class="gradientBg">
+			<div class="wrap">
+				<h2>Scène 5 - La Tour Eiffel</h2>
+				<p>Plus que tout autre monument, c’est sans doute la tour Eiffel qui représente le mieux la relation de Paris à la lumière. Illuminations, publicité, horloges et feux d’artifices : depuis son inauguration, la dame de fer est le support des créations lumineuses les plus audacieuses et les plus marquantes. Explorez son étonnante histoire pour lui rendre sa splendeur !</p>	
+			</div>
+		</div>
+		<span class="info gradientBg"></span><!-- bouton info -->
+
+		<!-- PopIn Indice -->
+		<div class="pop-in gradientBg" id="indice1">
+			<div class="wrap">
+				<h3>Premier Objet</h3>
+				<p class="strong">Eclairage au gaz</p>
+				<p>Le soir de son inauguration, ce ne sont pas des ampoules mais des becs de gaz, au nombre de 10 000, qui illuminent la dame de fer. Un phare bleu-blanc-rouge est placé au sommet, et c’est à l’époque le plus puissant au monde.</p>
+				<a href="#" class="continue">continuer</a>
+			</div>
+		</div>
+		<div class="pop-in gradientBg" id="indice2">
+			<div class="wrap">
+				<h3>Deuxième objet</h3>
+				<p class="strong">La tour Citroën</p>
+				<p>Pendant 10 ans, la tour Eiffel était une publicité pour Citroën ! De 1925 à 1936, le constructeur automobile fit installer 250 000 ampoules de couleur qui dessinaient le nom de la marque en lettres géantes sur trois des quatre faces du monument. On pouvait voir le résultat à 40 kilomètres à la ronde.</p>
+				<a href="#" class="continue">continuer</a>
+			</div>
+		</div>
+		<<div class="pop-in gradientBg" id="indice3">
+			<div class="wrap">
+				<h3>Troisième objet</h3>
+				<p class="strong">Heure de Paris</p>
+				<p>Plusieurs horloges ont donné l’heure aux parisiens au cours de l’histoire de la tour : la première, en 1907, fait 6 mètres de haut et donne l’heure en chiffres lumineux. La seconde, en 1933, est une horloge à aiguilles lumineuses de 15 mètres de diamètre… qui se cache dans le E de la publicité Citroën.</p>
+				<a href="#" class="continue">continuer</a>
+			</div>
+		</div>
+
+		<!-- PopIn Enigme -->
+		<div id="enigme" class="Enigme gradientBg" ><!--Pop in Enigme-->
+			<div class="wrap">
+				<h3>Question n°5</h3>
+				<p id="erreur"><p><!-- Message d'erreur -->
+				<p>Au début des années 30, quelle installation lumineuse occupe presque toute la surface de la tour Eiffel ?<p>
+				<form>
+					<label for="1">Une publicité Citroën</label><input type="radio" name="reponse" id="1" value="1">  </input>
+					<label for="2">Une gigantesque horloge</label><input type="radio" name="reponse" id ="2" value="2">  </input>
+					<label for="3">Un phare</label><input type="radio" name="reponse" id ="3" value="3">  </input>
+					<input type="button" id="allume" class="continue" onclick="ActiveLight()" value="Valider"></input>
+				</form>
+			</div>
+		</div>
+
+		<!-- Objets ?trouver -->
+		<div id="indice" class="PopIn">
+			<div id="zone1" style="top:7%; left:48%;" class="indice"></div>
+			<div id="zone2" style="top: 49%; left: 48%" class="indice"></div>
+			<div id="zone3" style="top:68%; left:48%;" class="indice"></div>
+		</div>
+
+		<!--Lien pour la nouvelle scene-->
+		<a href="merci.html" id="lien" title="Suivant >" class="lien gradientBg">Suivant ></a>
+
+			<script>
+		window.setInterval(function() {
+		  collision($('#zone3'), $('#centre'));
+		}, 2000);
+	</script>
+
+	</section>
+	

@@ -1,0 +1,69 @@
+	<section class="scene1" id="scene">
+		
+    	<!-- background image -->
+		<img src="images/appart.jpg" alt="#" class="bg-main" id="off"/> 
+		<img src="images/appartl.jpg" alt="#" class="bg-main" id="on"/> 
+
+		<!--Effet lampe torche-->
+		<div id="centre" class="center small"></div>
+		<div id="spot" class="spotlight"></div>
+		
+
+		<!-- Texte d'intro -->
+		<div id="intro" class="gradientBg">
+			<div class="wrap">
+				<h2>Scène 1 - L'appartement</h2>
+				<p>Il y a quelque chose qui cloche. Ce n’est pas que l’appartement qui a été soudainement plongé dans le noir : tout Paris, dehors, a subi le même sort. A l’aide de votre lampe-torche, ramenez la lumière étape par étape !</p>	
+			</div>
+		</div>
+		<span class="info gradientBg"></span><!-- bouton info -->
+
+		<!-- PopIn Indice -->
+		<div class="pop-in gradientBg" id="indice1">
+			<div class="wrap">
+				<h3>Premier Objet</h3>
+				<p class="strong">Est-ce qu'on dort plus ou moins ?</p>
+				<p>Les français changent d’heure deux fois par an depuis 1973 seulement, année du premier choc pétrolier. L’objectif est de diminuer la consommation d’électricité en faisant coïncider les heures d’ensoleillement  avec les heures d’activité.</p>
+				<a href="#" class="continue">continuer</a>
+			</div>
+		</div>
+		<div class="pop-in gradientBg" id="indice2">
+			<div class="wrap">
+				<h3>Deuxième objet</h3>
+				<p class="strong">Un réseau automatisé</p>
+				<p>Paris est alimenté en électricité grâce à un réseau à très haute tension encerclant la région parisienne. Des postes électriques automatisés disséminés dans tout Paris convertissent le courant et l’acheminent jusqu’à votre prise, et permettent au réseau de répondre très vite aux coupures de courant.</p>
+				<a href="#" class="continue">continuer</a>
+			</div>
+		</div>
+
+		<!-- PopIn Enigme -->
+		<div id="enigme" class="Enigme gradientBg" ><!--Pop in Enigme-->
+			<div class="wrap">
+				<h3>Question n°1</h3>
+				<p id="erreur"><p><!-- Message d'erreur -->
+				<p>Pour quelle raison a-t-on créé le changement d’heure ?<p>
+				<form>
+					<span>
+						<label for="1"> Réduire la consommation</label>
+						<input type="radio" name="reponse" id="1" value="1"> </input>					
+					</span>
+					<span>
+						<label for="2">Améliorer le réseau de distribution </label>
+						<input type="radio" name="reponse" id ="2" value="2"> </input>
+					</span>
+					<input type="button" id="allume" class="continue" onclick="ActiveLight()" value="Valider"></input>
+				</form>
+			</div>
+		</div>
+
+		<!-- Objets ?trouver -->
+		<div id="indice" class="PopIn">
+			<div id="zone1" style="top:29%; left:13%" class="indice"></div>
+			<div id="zone2" style="top:35%; left:78%;" class="indice"></div>
+		</div>
+
+		<!--Lien pour la nouvelle scene-->
+		<a href="#" id="lien" title="Suivant >" class="lien gradientBg">Suivant ></a>
+
+	</section>
+	
